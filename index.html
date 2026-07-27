@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AOTLoom turns website project requirements into a clear scope, timeline, and client-ready proposal." />
+    <title>AOTLoom — Interactive Proposal Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <main class="shell">
+      <section class="topbar">
+        <a class="brand" href="#top" aria-label="AOTLoom home">
+          <span class="brand-mark">A<span></span></span>
+          <span>AOT<span>Loom</span></span>
+        </a>
+        <div class="topbar-actions">
+          <button class="ghost-button" id="loadSampleButton" type="button">Load sample</button>
+          <button class="outline-button" id="saveDraftButton" type="button">Save draft</button>
+        </div>
+      </section>
+
+      <section class="hero" id="top">
+        <div>
+          <p class="eyebrow">INTERACTIVE PROPOSAL STUDIO</p>
+          <h1>Turn a loose brief into a <em>clear build plan.</em></h1>
+          <p class="hero-copy">AOTLoom translates a web project conversation into a practical scope, delivery map, and client-ready proposal — without spreadsheets or guesswork.</p>
+        </div>
+        <div class="hero-orbit" aria-hidden="true">
+          <span class="orbit-core">01</span>
+          <span class="orbit-dot dot-one"></span>
+          <span class="orbit-dot dot-two"></span>
+          <span class="orbit-line"></span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Proposal builder">
+        <form class="brief-panel panel" id="briefForm">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">01 / PROJECT INPUT</p>
+              <h2>Shape the brief</h2>
+            </div>
+            <span class="status-pill" id="draftStatus">Ready</span>
+          </div>
+
+          <div class="field-grid">
+            <label>
+              Project name
+              <input id="projectName" name="projectName" type="text" placeholder="e.g. Northstar Studio" maxlength="60" />
+            </label>
+            <label>
+              Client / brand
+              <input id="clientName" name="clientName" type="text" placeholder="e.g. Northstar Coffee" maxlength="60" />
+            </label>
+          </div>
+
+          <label>
+            Project type
+            <select id="projectType" name="projectType">
+              <option value="landing">Conversion landing page</option>
+              <option value="website">Business website</option>
+              <option value="portfolio">Creative portfolio</option>
+              <option value="dashboard">Client dashboard</option>
+              <option value="store">Small e-commerce store</option>
+            </select>
+          </label>
+
+          <label>
+            Primary outcome
+            <textarea id="projectGoal" name="projectGoal" rows="3" placeholder="What should this project help the client achieve?"></textarea>
+          </label>
+
+          <div class="field-grid">
+            <label>
+              Core pages
+              <input id="pageCount" name="pageCount" type="number" min="1" max="24" value="4" />
+            </label>
+            <label>
+              Target launch
+              <select id="timeline" name="timeline">
+                <option value="flexible">Flexible</option>
+                <option value="standard" selected>4–6 weeks</option>
+                <option value="fast">2–3 weeks</option>
+                <option value="urgent">Under 2 weeks</option>
+              </select>
+            </label>
+          </div>
+
+          <fieldset>
+            <legend>Included capabilities</legend>
+            <div class="feature-grid">
+              <label class="feature-option"><input type="checkbox" value="Strategy workshop" checked /><span>Strategy workshop</span></label>
+              <label class="feature-option"><input type="checkbox" value="Responsive design" checked /><span>Responsive design</span></label>
+              <label class="feature-option"><input type="checkbox" value="CMS or content setup" /><span>CMS or content setup</span></label>
+              <label class="feature-option"><input type="checkbox" value="Booking or contact flow" /><span>Booking or contact flow</span></label>
+              <label class="feature-option"><input type="checkbox" value="Analytics setup" /><span>Analytics setup</span></label>
+              <label class="feature-option"><input type="checkbox" value="Custom integrations" /><span>Custom integrations</span></label>
+            </div>
+          </fieldset>
+        </form>
+
+        <aside class="insight-panel panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">02 / LIVE SCOPE MAP</p>
+              <h2>See the build</h2>
+            </div>
+            <span class="score" id="complexityScore">42</span>
+          </div>
+
+          <div class="scope-map" id="scopeMap" aria-label="Interactive scope map">
+            <div class="scope-node root-node"><span class="node-icon">✦</span><strong id="mapProjectName">Project</strong><small>Core experience</small></div>
+            <div class="scope-connector connector-one"></div>
+            <div class="scope-connector connector-two"></div>
+            <div class="scope-connector connector-three"></div>
+            <div class="scope-node map-node node-pages"><span>Pages</span><strong id="mapPages">04</strong></div>
+            <div class="scope-node map-node node-flow"><span>Flow</span><strong id="mapFlow">Responsive</strong></div>
+            <div class="scope-node map-node node-stack"><span>Stack</span><strong id="mapStack">Web</strong></div>
+          </div>
+
+          <div class="metric-grid">
+            <article><span>Delivery</span><strong id="deliveryMetric">4–6 wk</strong><small id="deliveryDetail">Standard cadence</small></article>
+            <article><span>Estimate</span><strong id="budgetMetric">$1.4k–$1.9k</strong><small id="budgetDetail">Scope-based range</small></article>
+            <article><span>Risk level</span><strong id="riskMetric">Balanced</strong><small id="riskDetail">3 key decisions</small></article>
+          </div>
+
+          <div class="scope-meter" aria-label="Complexity indicator"><span>Scope intensity</span><div><i id="meterFill"></i></div><strong id="meterLabel">Focused</strong></div>
+        </aside>
+      </section>
+
+      <section class="proposal panel" id="proposalSection">
+        <div class="panel-heading proposal-heading">
+          <div>
+            <p class="eyebrow">03 / CLIENT-READY OUTPUT</p>
+            <h2 id="proposalTitle">Project proposal</h2>
+          </div>
+          <div class="proposal-actions">
+            <button class="ghost-button" id="copyButton" type="button">Copy brief</button>
+            <button class="ghost-button" id="exportButton" type="button">Export .md</button>
+            <button class="primary-button" id="printButton" type="button">Print / PDF</button>
+          </div>
+        </div>
+
+        <div class="proposal-grid">
+          <article class="proposal-card accent-card">
+            <span class="card-number">01</span>
+            <h3>Outcome</h3>
+            <p id="proposalOutcome">A focused web experience designed around the client’s primary goal.</p>
+          </article>
+          <article class="proposal-card">
+            <span class="card-number">02</span>
+            <h3>Included scope</h3>
+            <ul id="proposalScope"><li>Strategy workshop</li><li>Responsive design</li></ul>
+          </article>
+          <article class="proposal-card">
+            <span class="card-number">03</span>
+            <h3>Delivery path</h3>
+            <ol id="proposalTimeline"><li>Discovery & direction</li><li>Design & build</li><li>Review & launch</li></ol>
+          </article>
+        </div>
+
+        <footer class="proposal-footer"><span>Prepared with AOTLoom</span><span id="updatedAt">Updated just now</span></footer>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
